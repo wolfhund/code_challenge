@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from .ingestion import DataIngestion
 from .data_pipeline import process_data
+import asyncio
 
 app = FastAPI()
 ingestion = DataIngestion()
@@ -11,7 +12,7 @@ def health_check():
 
 @app.post("/api/v1/start-ingestion")
 async def start_ingestion():
-    await ingestion.start()
+    asyncio.create_task(ingestion.start())
     return {"message": "Data ingestion started"}
 
 @app.post("/api/v1/stop-ingestion")
