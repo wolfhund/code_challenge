@@ -1,9 +1,11 @@
+from .middleware import error_handler
 from fastapi import FastAPI
 from .ingestion import DataIngestion
 from .data_pipeline import process_data
 import asyncio
 
 app = FastAPI()
+app.middleware("http")(error_handler)
 ingestion = DataIngestion()
 
 @app.get("/api/v1/health")
