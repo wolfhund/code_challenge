@@ -4,4 +4,4 @@ from datetime import datetime
 class DataPoint(BaseModel):
     timestamp: datetime
     value: float
-    catagory: str  # Intentional typo
+    category: str  # Intentional typo
